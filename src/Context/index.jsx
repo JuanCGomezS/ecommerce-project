@@ -62,7 +62,8 @@ export const ShoppingCartProvider = ({children}) => {
   // Get products by category
   const [searchByCategory, setSearchByCategory] = useState(null)
 
-  const [message, setMessage] = useState("");
+  //const [message, setMessage] = useState("");
+  //const [messageType, setMessageType] = useState("");
 
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/products')
@@ -130,8 +131,10 @@ export const ShoppingCartProvider = ({children}) => {
       setAccount,
       signOut,
       setSignOut,
-      message,
-      setMessage
+      //message,
+      //setMessage,
+      //messageType,
+      //setMessageType
     }}>
       {children}
     </ShoppingCartContext.Provider>

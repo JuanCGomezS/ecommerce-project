@@ -12,7 +12,8 @@ const Navbar = () => {
   const parsedSignOut = JSON.parse(signOut)
   const isUserSignOut = context.signOut || parsedSignOut
   // Account
-  const account = localStorage.getItem('account')
+  const account = JSON.stringify(context.account);
+  
   const parsedAccount = JSON.parse(account)
   // Has an account
   const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
@@ -25,12 +26,12 @@ const Navbar = () => {
     context.setSignOut(true)
   }
 
-  const renderView = () => {
+  const renderView = () => {    
     if (hasUserAnAccount && !isUserSignOut) {
       return (
         <>
           <li className='text-black/60'>
-            {parsedAccount?.email}
+            {context?.account?.name}
           </li>
           <li>
             <NavLink

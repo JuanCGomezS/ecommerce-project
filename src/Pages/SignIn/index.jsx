@@ -2,9 +2,10 @@ import { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
 import Layout from "../../Components/Layout";
-import { signInWs } from "../../services/AuthService";
+import { signInWs, permissionsWs } from "../../services/AuthService";
 import MessageContainer from "../../Components/Message/MessageContainer";
 import { messages } from "../../consts/Utilities";
+import { jwtDecode } from 'jwt-decode';
 
 function SignIn() {
   const context = useContext(ShoppingCartContext);
@@ -51,12 +52,15 @@ function SignIn() {
       const response = await signInWs(data.email, data.password);
 
       if (response.success) {
-        const stringifiedAccount = JSON.stringify(data);
-        localStorage.setItem("account", stringifiedAccount);
-        context.setAccount(data);
+        localStorage.setItem("auth", response.token);
         context.setSignOut(false);
+        const decodedToken = jwtDecode(response.token);
+        const permissions = await permissionsWs(decodedToken.rol);
+        data.name = `${decodedToken.nombre} ${decodedToken.apellido}`;
+        context.setAccount(data);
+        context.setPermissions(permissions); 
 
-        showMessage("success", messages.welcome);
+        showMessage("success", `${messages.welcome} ${decodedToken.nombre} ${decodedToken.apellido}` );
         setTimeout(() => {
           navigate("/");
         }, 1000);

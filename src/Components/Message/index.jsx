@@ -4,13 +4,13 @@ const Message = ({ type, text, onClose }) => {
   const getMessageStyle = () => {
     switch (type) {
         case 'error':
-          return { backgroundColor: 'rgba(255, 0, 0, 0.15)', color: 'black', border: '2px solid rgba(255, 0, 0, 0.7)' };
+          return { backgroundColor: 'rgba(255, 0, 0, 0.7)', color: 'black', border: '2px solid rgba(255, 0, 0, 1)' };
         case 'warning':
-          return { backgroundColor: 'rgba(255, 255, 0, 0.15)', color: 'black', border: '2px solid rgba(255, 140, 0, 0.7)' };
+          return { backgroundColor: 'rgba(255, 140, 0, 0.7)', color: 'black', border: '2px solid rgba(255, 140, 0, 1)' };
         case 'success':
-          return { backgroundColor: 'rgba(0, 128, 0, 0.15)', color: 'black', border: '2px solid rgba(0, 128, 0, 0.7)' };
+          return { backgroundColor: 'rgba(0, 128, 0, 0.7)', color: 'black', border: '2px solid rgba(0, 128, 0, 1)' };
         default:
-          return { backgroundColor: 'rgba(211, 211, 211, 0.15)', color: 'black', border: '2px solid rgba(211, 211, 211, 0.7)' };
+          return { backgroundColor: 'rgba(211, 211, 211, 0.7)', color: 'black', border: '2px solid rgba(211, 211, 211, 1)' };
       }
   };
 

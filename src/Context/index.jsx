@@ -26,6 +26,7 @@ export const initializeLocalStorage = () => {
 export const ShoppingCartProvider = ({children}) => {
   // My account
   const [account, setAccount] = useState({})
+  const [permissions, setPermissions] = useState({})
 
   // Sign out
   const [signOut, setSignOut] = useState(false)
@@ -131,10 +132,8 @@ export const ShoppingCartProvider = ({children}) => {
       setAccount,
       signOut,
       setSignOut,
-      //message,
-      //setMessage,
-      //messageType,
-      //setMessageType
+      permissions,
+      setPermissions
     }}>
       {children}
     </ShoppingCartContext.Provider>

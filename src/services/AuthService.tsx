@@ -10,9 +10,9 @@ export const signInWs = async (username: string, password_u: string) => {
 
   try {
     const res = await axios.post(url, { username, password_u });
-    localStorage.setItem("auth", res.data.accessToken);
+    const token = res.data.accessToken;
     localStorage.setItem("sign-out", JSON.stringify(false));
-    return { success: true };
+    return { success: true, token };
   } catch (error) {
     localStorage.clear();
     let errorMessage = "Se presentó un error";
@@ -23,4 +23,9 @@ export const signInWs = async (username: string, password_u: string) => {
     }
     return { success: false, errorMessage };
   }
+};
+
+export const permissionsWs = async (userRol: string) => {
+  const url = `${config.api}${myApiUrl}permissions`;
+  if (viewLogs) console.log("URL SignIn: ", url, { userRol });
 };

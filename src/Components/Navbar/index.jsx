@@ -12,7 +12,8 @@ const Navbar = () => {
   const parsedSignOut = JSON.parse(signOut)
   const isUserSignOut = context.signOut || parsedSignOut
   // Account
-  const account = localStorage.getItem('account')
+  const account = JSON.stringify(context.account);
+  
   const parsedAccount = JSON.parse(account)
   // Has an account
   const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
@@ -25,12 +26,12 @@ const Navbar = () => {
     context.setSignOut(true)
   }
 
-  const renderView = () => {
+  const renderView = () => {    
     if (hasUserAnAccount && !isUserSignOut) {
       return (
         <>
           <li className='text-black/60'>
-            {parsedAccount?.email}
+            {context?.account?.name}
           </li>
           <li>
             <NavLink
@@ -71,11 +72,11 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white'>
+    <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-custom-pink'>
       <ul className='flex items-center gap-3'>
         <li className='font-semibold text-lg'>
           <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
-            Shopi
+            {import.meta.env.VITE_APP_TITLE}
           </NavLink>
         </li>
         <li>
@@ -85,7 +86,7 @@ const Navbar = () => {
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
-            All
+            Todo
           </NavLink>
         </li>
         <li>

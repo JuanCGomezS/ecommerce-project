@@ -1,0 +1,26 @@
+/* animations.css */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.5s forwards;
+}
+
+.animate-slideOutToRight {
+  animation: slideOutToRight 0.5s forwards;
+}

@@ -19,10 +19,16 @@ const AppRoutes = () => {
   // Sign Out
   const signOut = localStorage.getItem('sign-out')
   const parsedSignOut = JSON.parse(signOut)
+  // Sign Out
+  const auth = localStorage.getItem('auth')
+  //const parsedAuth = JSON.parse(auth)
+  
   // Has an account
   const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
   const noAccountInLocalState = Object.keys(context.account).length === 0
-  const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
+  const noAuthInLocalState = auth?.length > 0 ? true : false;
+
+  const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState || noAuthInLocalState
   const isUserSignOut = context.signOut || parsedSignOut
   
   let routes = useRoutes([

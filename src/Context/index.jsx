@@ -26,6 +26,7 @@ export const initializeLocalStorage = () => {
 export const ShoppingCartProvider = ({children}) => {
   // My account
   const [account, setAccount] = useState({})
+  const [permissions, setPermissions] = useState({})
 
   // Sign out
   const [signOut, setSignOut] = useState(false)
@@ -61,6 +62,9 @@ export const ShoppingCartProvider = ({children}) => {
 
   // Get products by category
   const [searchByCategory, setSearchByCategory] = useState(null)
+
+  //const [message, setMessage] = useState("");
+  //const [messageType, setMessageType] = useState("");
 
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/products')
@@ -127,7 +131,9 @@ export const ShoppingCartProvider = ({children}) => {
       account,
       setAccount,
       signOut,
-      setSignOut
+      setSignOut,
+      permissions,
+      setPermissions
     }}>
       {children}
     </ShoppingCartContext.Provider>
